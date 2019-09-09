@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from 'react-dom';
+
 
 export const Content = () => {
     class TodoApp extends React.Component {
@@ -14,7 +14,8 @@ export const Content = () => {
                 ]
             }
         }
-        render() {
+ 
+    }
             return (
                 <div>
                     <h2>Todos:</h2>
@@ -30,6 +31,5 @@ export const Content = () => {
                     </ol>
                 </div>
             )
-        }
-    }
+        
 };
