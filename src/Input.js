@@ -1,4 +1,5 @@
 import React from 'react';
+
 export class Input extends React.Component {
 
   constructor(props) {
@@ -6,7 +7,6 @@ export class Input extends React.Component {
     this.state = {
       taskDescription: ""
     }
-
   }
 
   updateInputValue = (evt) => {

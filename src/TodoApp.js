@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
 import { Input } from './Input'
+import {Row} from './Row'
 
 export class TodoApp extends React.Component {
 
@@ -23,20 +24,23 @@ export class TodoApp extends React.Component {
         this.setState({ items: updatedItems })
     }
 
+    checkItem = (wantedIndex) => {
+        var updatedItems = this.state.items.map((item, index) => {
+            if (wantedIndex === index) {
+                return {text : item.text, done: !item.done}
+            }
+            return item
+        })
+        this.setState({ items: updatedItems })
+    }
 
     render() {
         return (
-
             <div>
                 <h2>Todos:</h2>
                 <Input addItem={this.saveItem} />
                 {this.state.items.map((item, index) =>
-                    <div key={index}>
-                        <input onChange={() => { }} type="checkbox" checked={item.done} />
-                        <span className={item.done ? "done" : ""}>
-                            {item.text}
-                        </span>
-                    </div>
+                    <Row key={index} done={item.done} text={item.text} markAsDone={() => this.checkItem(index) }/>
                 )}
             </div>
         )
