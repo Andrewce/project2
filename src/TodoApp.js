@@ -2,7 +2,6 @@ import React from 'react';
 import './index.css';
 import { Input } from './Input'
 
-
 export class TodoApp extends React.Component {
 
     constructor(props) {
@@ -18,10 +17,10 @@ export class TodoApp extends React.Component {
         }
     }
 
-    addItem = (text, done) => {
-        var newEntry = { text: document.getElementById("entry").value }
-        this.setState({ items: this.state.items.concat(newEntry) });
-        document.getElementById("entry").value = "";
+    saveItem = (text, done) => {
+        var newItem = { text: text, done: false }
+        var updatedItems = [...this.state.items, newItem]
+        this.setState({ items: updatedItems })
     }
 
 
@@ -30,13 +29,14 @@ export class TodoApp extends React.Component {
 
             <div>
                 <h2>Todos:</h2>
-                <button onClick={this.addItem}>Click</button>
-                {this.state.items.map((item, index) => <div key={index}>
-                    <input type="checkbox" checked={item.done} />
-                    <span className={item.done ? "done" : ""}>
-                        {item.text}
-                    </span>
-                </div>
+                <Input addItem={this.saveItem} />
+                {this.state.items.map((item, index) =>
+                    <div key={index}>
+                        <input onChange={() => { }} type="checkbox" checked={item.done} />
+                        <span className={item.done ? "done" : ""}>
+                            {item.text}
+                        </span>
+                    </div>
                 )}
             </div>
         )
